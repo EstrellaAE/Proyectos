@@ -12,22 +12,19 @@ const proyectoSchema = new mongoose.Schema({
   piezas: [
     {
       nombrePieza: {
-        type: String,
-        required: true,
+        type: String
       },
       cantidadSolicitada: {
-        type: Number,
-        required: true,
+        type: Number
       },
     },
   ],
   area: {
-    type: String,
-    required: true,
+    type: String
   },
   fechaInicio: {
     type: Date,
-    required: true,
+    required: true
   },
   fechaFin: {
     type: Date,

@@ -3,19 +3,11 @@ import Proyecto from '../models/proyectos.js';
 const agregarProyecto = async (req, res) => {
   try {
     // Obtener los datos del cuerpo de la solicitud (req.body)
-    const { nombre, descripcion, piezas, area, fechaInicio, fechaFin, nombreResponsable } = req.body;
-
+    const { nombre, descripcion, fechaInicio, fechaFin, nombreResponsable } = req.body;
+    console.log(req.body);
     // Crear una nueva instancia de Proyecto con los datos proporcionados
-    const nuevoProyecto = new Proyecto({
-      nombre,
-      descripcion,
-      piezas,
-      area,
-      fechaInicio,
-      fechaFin,
-      nombreResponsable
-    });
-
+    const nuevoProyecto = new Proyecto(req.body);
+    console.log(nuevoProyecto);
     // Guardar el nuevo proyecto en la base de datos
     const proyectoGuardado = await nuevoProyecto.save();
 

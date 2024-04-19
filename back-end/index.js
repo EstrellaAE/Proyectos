@@ -2,7 +2,8 @@ import express,{json} from 'express';
 import dotenv from 'dotenv';
 import cors from "cors";
 import conectarDB from './config/database.js';
-import userRouter from "../back-end/routes/userRouter.js"
+import proyectoRoutes from "./routes/proyectoRouter.js";
+import piezaRoutes from "./routes/piezasRouter.js";
 
 const app = express();
 dotenv.config();
@@ -22,8 +23,9 @@ const corsOptions = {
         };
     }
 };
-//app.use(cors(corsOptions));
-app.use('/app/user',userRouter);
+app.use(cors(corsOptions));
+app.use('/app/proyecto',proyectoRoutes);
+app.use('/app/pieza',piezaRoutes);
 
 
 //puerto del servidor 
