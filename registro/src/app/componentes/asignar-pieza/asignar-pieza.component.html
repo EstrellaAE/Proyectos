@@ -1,0 +1,39 @@
+<div>
+    <h2>Asignar Piezas a Proyecto</h2>
+  
+    <!-- Selección de Proyecto -->
+    <div>
+      <label for="proyecto">Selecciona un Proyecto:</label>
+      <!--<select id="proyecto" (change)="seleccionarProyecto($event.target.value)">
+        <option *ngFor="let proyecto of proyectos" [value]="proyecto">{{ proyecto.nombre }}</option>
+      </select>-->
+    </div>
+  
+    <!-- Piezas Disponibles -->
+    <div *ngIf="proyectoSeleccionado">
+      <h3>Piezas Disponibles:</h3>
+      <ul>
+        <li *ngFor="let pieza of piezasDisponibles">
+          {{ pieza.nombre }} - {{ pieza.descripcion }}
+          <button (click)="asignarPieza(pieza)">Asignar</button>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Piezas Asignadas -->
+    <div *ngIf="piezasAsignadas.length > 0">
+      <h3>Piezas Asignadas:</h3>
+      <ul>
+        <li *ngFor="let pieza of piezasAsignadas">
+          {{ pieza.nombre }} - {{ pieza.descripcion }}
+        </li>
+      </ul>
+      <button (click)="guardarAsignacion()">Guardar Asignación</button>
+    </div>
+  
+    <!-- Mensaje si no hay proyecto seleccionado -->
+    <div *ngIf="!proyectoSeleccionado">
+      <p>Selecciona un proyecto para comenzar.</p>
+    </div>
+  </div>
+  

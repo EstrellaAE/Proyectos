@@ -1,0 +1,20 @@
+<div>
+    <h2>Registrar Nueva Pieza</h2>
+    <form (ngSubmit)="registrarPieza()">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" [(ngModel)]="nuevaPieza.nombre" name="nombre" required>
+  
+      <label for="descripcion">Descripción:</label>
+      <textarea id="descripcion" [(ngModel)]="nuevaPieza.descripcion" name="descripcion" required></textarea>
+  
+      <label for="marca">Marca:</label>
+      <input type="text" id="marca" [(ngModel)]="nuevaPieza.marca" name="marca" required>
+  
+      <label for="tipo">Tipo:</label>
+      <input type="text" id="tipo" [(ngModel)]="nuevaPieza.tipo" name="tipo" required>
+  
+      <button type="submit">Registrar Pieza</button>
+    </form>
+  </div>
+
+  
