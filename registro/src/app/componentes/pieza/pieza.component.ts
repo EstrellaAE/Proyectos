@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Pieza } from '../../modelos/proyecto/pieza.model';
-import { Proyecto } from '../../modelos/proyecto/proyecto.model';
-import { ProyectoService } from '../../servicios/proyecto/proyecto.service';
+import { Pieza } from '../../modelos/pieza.model';
+import { PiezaService } from '../../servicios/pieza.service';
 
 @Component({
   selector: 'app-registrar-pieza',
@@ -17,12 +16,17 @@ export class RegistrarPiezaComponent {
     tipo: ''
   };
 
-  constructor() {}
+  constructor(
+    private piezaService:PiezaService
+  ) {}
 
-  registrarPieza(): void {
+  async registrarPieza(){
     console.log('Nueva Pieza:', this.nuevaPieza);
+    const data = await this.piezaService.crearPieza(this.nuevaPieza);
+    console.log(data);
     // Limpia el formulario después de enviar
     this.resetForm();
+
   }
 
   resetForm(): void {
