@@ -1,20 +1,47 @@
-<div>
-    <h2>Registrar Nueva Pieza</h2>
-    <form (ngSubmit)="registrarPieza()">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" [(ngModel)]="nuevaPieza.nombre" name="nombre" required>
-  
-      <label for="descripcion">Descripción:</label>
-      <textarea id="descripcion" [(ngModel)]="nuevaPieza.descripcion" name="descripcion" required></textarea>
-  
-      <label for="marca">Marca:</label>
-      <input type="text" id="marca" [(ngModel)]="nuevaPieza.marca" name="marca" required>
-  
-      <label for="tipo">Tipo:</label>
-      <input type="text" id="tipo" [(ngModel)]="nuevaPieza.tipo" name="tipo" required>
-  
-      <button type="submit">Registrar Pieza</button>
-    </form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <span class="navbar-toggler-icon"></span>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <!-- Enlace para Registrar Pieza -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/pieza" routerLinkActive="active">Registrar Pieza</a>
+        </li>
+        <!-- Enlace para Asignar Pieza -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/listar-proyectos" routerLinkActive="active">Asignar Pieza</a>
+        </li>
+        <!-- Enlace para Registrar Proyecto -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/registrar" routerLinkActive="active">Registrar Proyecto</a>
+        </li>
+        <!-- Enlace para Filtrar Datos -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/filtros" routerLinkActive="active">Filtrar Datos</a>
+        </li>
+      </ul>
+    </div>
   </div>
+</nav>
+
+<div>
+<div>
+  <h2>Registrar Nueva Pieza</h2>
+  <form (ngSubmit)="registrarPieza()">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" [(ngModel)]="nuevaPieza.nombre" name="nombre" required>
+
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" [(ngModel)]="nuevaPieza.descripcion" name="descripcion" required></textarea>
+
+    <label for="marca">Marca:</label>
+    <input type="text" id="marca" [(ngModel)]="nuevaPieza.marca" name="marca" required>
+
+    <label for="tipo">Tipo:</label>
+    <input type="text" id="tipo" [(ngModel)]="nuevaPieza.tipo" name="tipo" required>
+
+    <button type="submit">Registrar Pieza</button>
+  </form>
+</div>
 
   

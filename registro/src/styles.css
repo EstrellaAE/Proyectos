@@ -4,3 +4,11 @@
 @import "primeflex/primeflex.css";
 @import "primeicons/primeicons.css";
 
+html, body
+{
+    height: 100%;
+    margin: 0;
+}
+body{
+    background-color: #d8dbe2;
+}

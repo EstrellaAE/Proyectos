@@ -1,12 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+      <span class="navbar-toggler-icon"></span>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/registrar" routerLinkActive="active">Registrar Proyecto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Pieza" routerLinkActive="active">Registrar Piezas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/asignar-pieza" routerLinkActive="active">Asignar Piezas</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 <div>
+<div>
+  <div>
     <h2>Asignar Piezas a Proyecto</h2>
-  
-    <!-- Selección de Proyecto -->
     <div>
       <label for="proyecto">Selecciona un Proyecto:</label>
-      <!--<select id="proyecto" (change)="seleccionarProyecto($event.target.value)">
-        <option *ngFor="let proyecto of proyectos" [value]="proyecto">{{ proyecto.nombre }}</option>
-      </select>-->
+      
     </div>
   
     <!-- Piezas Disponibles -->

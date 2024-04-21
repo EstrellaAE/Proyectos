@@ -22,6 +22,16 @@ export class ProyectoService {
       console.log("Error Agular");
     }
   }
+
+  async listarProyectos(){
+    try {
+      const { data } = await clienteAxios.get('/proyecto/list');
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log("Error en Angular");
+    }
+  }
   
 
 }

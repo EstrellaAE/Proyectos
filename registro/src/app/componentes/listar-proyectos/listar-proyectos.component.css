@@ -1,0 +1,56 @@
+  /* Estilos para cada solicitud */
+  .solicitud {
+    border: 1px solid #343a40; /* Borde */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 15px; /* Espaciado interno */
+    margin-bottom: 15px; /* Margen inferior */
+    background-color: #73779444; /* Color de fondo */
+  }
+  
+  .datos {
+    margin-bottom: 5px; /* Margen inferior para los datos */
+  }
+  
+  /* Estilos para los botones dentro de cada solicitud */
+  .boton button {
+    margin-right: 10px; /* Margen derecho entre los botones */
+    padding: 8px 12px; /* Relleno interno de los botones */
+    border-radius: 4px; /* Bordes redondeados de los botones */
+    cursor: pointer; /* Cambio de cursor al pasar sobre los botones */
+  }
+  
+  .boton button:hover {
+    background-color: #0d1f3286; /* Color de fondo al pasar el cursor sobre los botones */
+    color: #343a40; /* Color del texto al pasar el cursor sobre los botones */
+  }
+  
+  
+/* Estilos para la barra de navegación */
+.navbar {
+  background-color: #343a40; /* Color de fondo oscuro */
+}
+
+.navbar-brand {
+  color: #ffffff; /* Color del texto para el enlace del logotipo */
+  font-size: 1.5rem; /* Tamaño de fuente del logotipo */
+  font-weight: bold; /* Peso de la fuente del logotipo */
+}
+
+.navbar-nav .nav-item .nav-link {
+  color: #ffffff; /* Color del texto para los enlaces */
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #7580b7b4; /* Cambiar color del texto en el hover */
+  text-decoration: none; /* Eliminar subrayado en hover */
+}
+
+/* Estilos para el ícono del botón de alternar */
+.navbar-toggler-icon {
+  background-color: #ffffff; /* Color del ícono del botón de alternar */
+}
+
+/* Estilos para el contenido de la barra de navegación */
+.container-fluid {
+  padding: 1px; /* Espaciado interno horizontal */
+}

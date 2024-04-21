@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Proyecto } from '../../modelos/proyecto.model';
 import { Pieza } from '../../modelos/pieza.model';
 import { AppRoutingModule } from '../../app-routing.module';
+import { CommonModule } from '@angular/common';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { PiezaService } from '../../servicios/pieza.service';
+import { ListarSolicitudesComponent } from '../listar-proyectos/listar-proyectos.component';
 
 @Component({
   selector: 'app-asignar-pieza',

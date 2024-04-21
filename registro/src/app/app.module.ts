@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,11 @@ import { RegistrarPiezaComponent } from './componentes/pieza/pieza.component';
 import { RegistrarProyectoComponent } from './componentes/registrar/registrar.component';
 import { AsignarPiezaComponent } from './componentes/asignar-pieza/asignar-pieza.component';
 import { RouterModule } from '@angular/router';
+import { from } from 'rxjs';
+import { ListarSolicitudesComponent } from './componentes/listar-proyectos/listar-proyectos.component';
+import { NavBarComponent } from './componentes/nav-bar/nav-bar.component';
+import { CommonModule } from '@angular/common';
+import { FiltrosComponent } from './componentes/filtros/filtros.component';
 
 
 @NgModule({
@@ -16,7 +21,9 @@ import { RouterModule } from '@angular/router';
     AppComponent,
     ProyectoComponent,
     RegistrarPiezaComponent,
-    RegistrarProyectoComponent
+    RegistrarProyectoComponent,
+    NavBarComponent,
+    FiltrosComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +33,8 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     RouterModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    CommonModule,
 
   ],
   providers: [

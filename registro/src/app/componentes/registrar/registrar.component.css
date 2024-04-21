@@ -1,25 +1,26 @@
-/* Estilos para el contenedor principal */
-.container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-  }
-  
-  /* Estilos para el título h2 */
+/* Estilos para el título h2 */
   .container h2 {
     font-size: 24px;
-    color: #333;
+    color: #676a82;
     margin-bottom: 20px;
   }
-  
+
+  /* Estilo para el formulario */
+form {
+  width: 300px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #343a40;
+  border-radius: 5px;
+  background-color: #73779444 ;
+}
+
   /* Estilos para las etiquetas */
   label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-weight: bold;
+    color: #0f122af7;
   }
   
   /* Estilos para los campos de entrada */
@@ -27,17 +28,17 @@
   textarea,
   input[type="date"] {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
+    padding: 5px;
+    border: 3px solid #343a40;
     border-radius: 4px;
-    box-sizing: border-box; /* Incluye el padding en el ancho total */
-    margin-bottom: 15px;
+    box-sizing: border-box; 
+    margin-bottom: 10px;
   }
   
   /* Estilos para el botón de envío */
   button[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #343a40;
+    color: rgb(250, 250, 250);
     border: none;
     border-radius: 4px;
     padding: 12px 20px;
@@ -46,6 +47,35 @@
   }
   
   button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #0d1f3286;
   }
   
+  /* Estilos para la barra de navegación */
+.navbar {
+  background-color: #343a40; /* Color de fondo oscuro */
+}
+
+.navbar-brand {
+  color: #ffffff; /* Color del texto para el enlace del logotipo */
+  font-size: 1.5rem; /* Tamaño de fuente del logotipo */
+  font-weight: bold; /* Peso de la fuente del logotipo */
+}
+
+.navbar-nav .nav-item .nav-link {
+  color: #ffffff; /* Color del texto para los enlaces */
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #7580b7b4; /* Cambiar color del texto en el hover */
+  text-decoration: none; /* Eliminar subrayado en hover */
+}
+
+/* Estilos para el ícono del botón de alternar */
+.navbar-toggler-icon {
+  background-color: #ffffff; /* Color del ícono del botón de alternar */
+}
+
+/* Estilos para el contenido de la barra de navegación */
+.container-fluid {
+  padding: 1px; /* Espaciado interno horizontal */
+}

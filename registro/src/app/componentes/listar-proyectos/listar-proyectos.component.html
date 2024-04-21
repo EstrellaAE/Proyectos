@@ -23,29 +23,18 @@
     </div>
   </div>
 </nav>
-<div>
-    <h2>Registrar Nuevo Proyecto</h2>
-    <div><form (ngSubmit)="registrarProyecto()">
 
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" [(ngModel)]="nuevoProyecto.nombre" name="nombre" required>
-  
-      <label for="descripcion">Descripción:</label>
-      <textarea id="descripcion" [(ngModel)]="nuevoProyecto.descripcion" name="descripcion" required></textarea>
-  
-      <label for="responsable">Responsable:</label>
-      <input type="text" id="responsable" [(ngModel)]="nuevoProyecto.nombreResponsable" name="responsable" required>
-  
-      <label for="fechaInicio">Fecha de Inicio:</label>
-      <input type="date" id="fechaInicio" [(ngModel)]="nuevoProyecto.fechaInicio" name="fechaInicio" required>
-  
-      <label for="fechaFin">Fecha de Fin:</label>
-      <input type="date" id="fechaFin" [(ngModel)]="nuevoProyecto.fechaFin" name="fechaFin">
-  
-      <button type="submit">Registrar Proyecto</button>
-    </form>
-  </div>
-</div>
+@for (solicitud of solicitudes; track $index) {   
+    <div class="solicitud">
+      <div class="datos">
+        <h2 class="titulo">{{solicitud.NomEmpresa}}</h2>
+        <p>{{solicitud.Perfil}}</p>
+        <p>{{solicitud.Cantidad}}</p>
+      </div>
 
-  
-  
+      <div class="boton">
+        <button (click)="editarSolicitud(solicitud._id)">Editar</button>
+        <button (click)="borrarSolicitud(solicitud._id)">Borrar</button>
+      </div>
+    </div>
+}

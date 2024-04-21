@@ -8,7 +8,7 @@ import { clienteAxios } from '../helpers/axios';
   providedIn: 'root'
 })
 export class PiezaService {
-
+  URL_API='http://localhost:3000/pieza/';
   constructor() {}
 
   async crearPieza(pieza:any){

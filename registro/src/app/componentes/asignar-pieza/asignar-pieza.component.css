@@ -1,0 +1,29 @@
+ /* Estilos para la barra de navegación */
+ .navbar {
+  background-color: #343a40; /* Color de fondo oscuro */
+}
+
+.navbar-brand {
+  color: #ffffff; /* Color del texto para el enlace del logotipo */
+  font-size: 1.5rem; /* Tamaño de fuente del logotipo */
+  font-weight: bold; /* Peso de la fuente del logotipo */
+}
+
+.navbar-nav .nav-item .nav-link {
+  color: #ffffff; /* Color del texto para los enlaces */
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #7580b7b4; /* Cambiar color del texto en el hover */
+  text-decoration: none; /* Eliminar subrayado en hover */
+}
+
+/* Estilos para el ícono del botón de alternar */
+.navbar-toggler-icon {
+  background-color: #ffffff; /* Color del ícono del botón de alternar */
+}
+
+/* Estilos para el contenido de la barra de navegación */
+.container-fluid {
+  padding: 1px; /* Espaciado interno horizontal */
+}

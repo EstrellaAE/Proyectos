@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { Proyecto } from '../../modelos/proyecto.model';
 import { ProyectoService } from '../../servicios/proyecto.service';
+import { ListarSolicitudesComponent } from '../listar-proyectos/listar-proyectos.component';
+import { Pieza } from '../../modelos/pieza.model';
+import { PiezaService } from '../../servicios/pieza.service';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { AppRoutingModule } from '../../app-routing.module';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-registrar-proyecto',
@@ -18,5 +24,11 @@ export class RegistrarProyectoComponent {
     console.log(this.nuevoProyecto);
     const data = await this.proyectoService.crearProyecto(this.nuevoProyecto);
     console.log(data);
+    this.resetForm();
+
+  }
+
+  resetForm(): void {
+    this.nuevoProyecto = new Proyecto();
   }
 }

@@ -23,29 +23,26 @@
     </div>
   </div>
 </nav>
+<!-- filtros.component.html -->
+
 <div>
-    <h2>Registrar Nuevo Proyecto</h2>
-    <div><form (ngSubmit)="registrarProyecto()">
+  <h2>Proyectos con Piezas</h2>
+  <ul>
+    <li *ngFor="let proyecto of proyectosConPiezas">{{ proyecto.nombre }}</li>
+  </ul>
 
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" [(ngModel)]="nuevoProyecto.nombre" name="nombre" required>
-  
-      <label for="descripcion">Descripción:</label>
-      <textarea id="descripcion" [(ngModel)]="nuevoProyecto.descripcion" name="descripcion" required></textarea>
-  
-      <label for="responsable">Responsable:</label>
-      <input type="text" id="responsable" [(ngModel)]="nuevoProyecto.nombreResponsable" name="responsable" required>
-  
-      <label for="fechaInicio">Fecha de Inicio:</label>
-      <input type="date" id="fechaInicio" [(ngModel)]="nuevoProyecto.fechaInicio" name="fechaInicio" required>
-  
-      <label for="fechaFin">Fecha de Fin:</label>
-      <input type="date" id="fechaFin" [(ngModel)]="nuevoProyecto.fechaFin" name="fechaFin">
-  
-      <button type="submit">Registrar Proyecto</button>
-    </form>
-  </div>
+  <h2>Piezas Disponibles</h2>
+  <ul>
+    <li *ngFor="let pieza of piezasDisponibles">{{ pieza.nombre }}</li>
+  </ul>
+
+  <h2>Proyectos por Fecha</h2>
+  <ul>
+    <li *ngFor="let proyecto of proyectosPorFecha">{{ proyecto.nombre }} (Fecha: {{ proyecto.fecha }})</li>
+  </ul>
+
+  <h2>Piezas No Asociadas</h2>
+  <ul>
+    <li *ngFor="let pieza of piezasNoAsociadas">{{ pieza.nombre }}</li>
+  </ul>
 </div>
-
-  
-  

@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
-import { Pieza } from '../../modelos/pieza.model';
 import { PiezaService } from '../../servicios/pieza.service';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { Proyecto } from '../../modelos/proyecto.model';
+import { AppRoutingModule } from '../../app-routing.module';
+import { CommonModule } from '@angular/common';
+import { ListarSolicitudesComponent } from '../listar-proyectos/listar-proyectos.component';
+import { ProyectoService } from '../../servicios/proyecto.service';
+import { Pieza } from '../../modelos/pieza.model';
+import { FiltroService } from '../../servicios/filtro.service';
 
 @Component({
   selector: 'app-registrar-pieza',
