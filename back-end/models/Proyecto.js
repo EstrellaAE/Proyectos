@@ -11,12 +11,7 @@ const proyectoSchema = new mongoose.Schema({
   },
   piezas: [
     {
-      nombrePieza: {
-        type: String
-      },
-      cantidadSolicitada: {
-        type: Number
-      },
+      
     },
   ],
   area: {

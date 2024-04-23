@@ -22,4 +22,16 @@ export class PiezaService {
     }
   }
 
+  async consultarPiezas(): Promise<Pieza[]> {
+    try {
+      const response = await clienteAxios.get<Pieza[]>('/pieza/obtener');
+      const piezas = response.data; // Acceder a la propiedad 'data' para obtener las piezas
+      console.log('Piezas obtenidas:', piezas);
+      return piezas;
+    } catch (error) {
+      console.error('Error al consultar piezas:', error);
+      throw new Error('Error al consultar piezas'); // Manejar el error de manera más específica según tu aplicación
+    }
+  }
+
 }

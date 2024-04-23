@@ -1,40 +1,66 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <span class="navbar-toggler-icon"></span>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <!-- Enlace para Registrar Pieza -->
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/pieza" routerLinkActive="active">Registrar Pieza</a>
-        </li>
-        <!-- Enlace para Asignar Pieza -->
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/listar-proyectos" routerLinkActive="active">Asignar Pieza</a>
-        </li>
-        <!-- Enlace para Registrar Proyecto -->
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/registrar" routerLinkActive="active">Registrar Proyecto</a>
-        </li>
-        <!-- Enlace para Filtrar Datos -->
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/filtros" routerLinkActive="active">Filtrar Datos</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<div class="flex justify-content-center align-items-center h-full">
 
-@for (solicitud of solicitudes; track $index) {   
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-toggler-icon"></span>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <!-- Enlace para Registrar Pieza -->
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/pieza']" routerLinkActive="active">Registrar Pieza</a>
+          </li>
+          <!-- Enlace para Asignar Pieza -->
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/listar-proyectos']" routerLinkActive="active">Asignar Pieza</a>
+          </li>
+          <!-- Enlace para Registrar Proyecto -->
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/registrar']" routerLinkActive="active">Registrar Proyecto</a>
+          </li>
+          <!-- Enlace para Filtrar Datos -->
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/filtros']" routerLinkActive="active">Filtrar Datos</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  @for (solicitud of solicitudes; track $index) {   
+      <div class="solicitud">
+        <div class="datos">
+          <h2 class="titulo">{{solicitud.nombre}}</h2>
+          <p>{{solicitud.descripcion}}</p>
+          <p>Piezas {{solicitud.piezas.length}}</p>
+        </div>
+  
+        <div class="boton">
+          <button (click)="obtenerPiezas(solicitud._id)">Editar</button>
+          <button (click)="borrarSolicitud(solicitud._id)">Borrar</button>
+        </div>
+      </div>
+  }
+  
+</div>
+
+<div>
+  @for (pieza of Piezas; track $index) {   
     <div class="solicitud">
       <div class="datos">
-        <h2 class="titulo">{{solicitud.NomEmpresa}}</h2>
-        <p>{{solicitud.Perfil}}</p>
-        <p>{{solicitud.Cantidad}}</p>
+        <h2 class="titulo">{{pieza.nombre}}</h2>
+        <p>{{pieza.descripcion}}</p>
+        <p>{{pieza.marca}}</p>
+        <p>{{pieza.tipo}}</p>
       </div>
 
+      <label for="">cantidad</label>
+      <input type="number" [(ngModel)]="cantidadP">
+
       <div class="boton">
-        <button (click)="editarSolicitud(solicitud._id)">Editar</button>
-        <button (click)="borrarSolicitud(solicitud._id)">Borrar</button>
+        <button (click)="asignarPieza(pieza)">Aceptar</button>
+        <button >Cancelar</button>
       </div>
     </div>
 }
+</div>
+

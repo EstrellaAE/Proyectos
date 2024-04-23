@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FiltroService } from '../../servicios/filtro.service'; // Importa FiltroService
-import { Route } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ProyectoService } from '../../servicios/proyecto.service';
+import { Proyecto } from '../../modelos/proyecto.model'; // Asegúrate de importar el modelo adecuado
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { Pieza } from '../../modelos/pieza.model';
+import { PiezaService } from '../../servicios/pieza.service';
+import { AppRoutingModule } from '../../app-routing.module';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-filtros',
@@ -8,59 +15,47 @@ import { Route } from '@angular/router';
   styleUrls: ['./filtros.component.css']
 })
 export class FiltrosComponent implements OnInit {
-  proyectosConPiezas: any[] = [];
-  piezasDisponibles: any[] = [];
-  proyectosPorFecha: any[] = [];
-  piezasNoAsociadas: any[] = [];
+  formulario!: FormGroup;
+  proyectosConPiezas: Proyecto[] = []; // Definir el array de proyectos con piezas
+  piezasDisponibles: any[] = []; // Definir el array de piezas disponibles
+  proyectosPorFecha: Proyecto[] = []; // Definir el array de proyectos por fecha
+  piezasNoAsociadas: any[] = []; // Definir el array de piezas no asociadas
 
-  constructor(private filtroService: FiltroService) { } // Inyecta FiltroService en lugar de ProyectoService
+  constructor(private fb: FormBuilder, private proyectoService: ProyectoService) {
+    this.formulario = this.fb.group({
+      tienePiezas: [null],
+      fecha: [null]
+    });
+  }
 
   ngOnInit(): void {
-    this.obtenerProyectosConPiezas();
-    this.obtenerPiezasDisponibles();
+    // Llama a la función para cargar los proyectos con piezas al iniciar el componente
+    this.cargarProyectosConPiezas();
   }
 
-  obtenerProyectosConPiezas() {
-    this.filtroService.obtenerProyectosConPiezas().subscribe(
-      (data: any[]) => {
-        this.proyectosConPiezas = data;
-      },
-      (error) => {
-        console.error('Error al obtener proyectos con piezas:', error);
-      }
-    );
+  async buscarProyectos() {
+    const filtros = this.formulario.value;
+    // Llama al servicio para buscar proyectos por filtros y asigna los resultados a las propiedades correspondientes
+    this.proyectosPorFecha = await this.proyectoService.obtenerProyectoPorId(filtros);
   }
 
-  obtenerPiezasDisponibles() {
-    this.filtroService.obtenerPiezasDisponibles().subscribe(
-      (data: any[]) => {
-        this.piezasDisponibles = data;
-      },
-      (error) => {
-        console.error('Error al obtener piezas disponibles:', error);
-      }
-    );
+
+  // Opcional: Agrega métodos similares para cargar piezas disponibles y piezas no asociadas
+ async cargarProyectosConPiezas() {
+    try {
+      // Llama al servicio para obtener proyectos que tienen piezas asociadas
+      this.proyectosConPiezas = await this.proyectoService.obtenerProyectosConPiezas();
+    } catch (error) {
+      console.error('Error al cargar proyectos con piezas:', error);
+    }
   }
 
-  buscarProyectosPorFecha(fecha: string) {
-    this.filtroService.buscarProyectosPorFecha(fecha).subscribe(
-      (data: any[]) => {
-        this.proyectosPorFecha = data;
-      },
-      (error) => {
-        console.error('Error al buscar proyectos por fecha:', error);
-      }
-    );
-  }
-
-  obtenerPiezasNoAsociadas() {
-    this.filtroService.obtenerPiezasNoAsociadas().subscribe(
-      (data: any[]) => {
-        this.piezasNoAsociadas = data;
-      },
-      (error) => {
-        console.error('Error al obtener piezas no asociadas:', error);
-      }
-    );
+  async cargarProyectosPorFecha() {
+    try {
+      // Llama al servicio para obtener proyectos ordenados por fecha
+      this.proyectosPorFecha = await this.proyectoService.obtenerProyectosPorFecha();
+    } catch (error) {
+      console.error('Error al cargar proyectos por fecha:', error);
+    }
   }
 }

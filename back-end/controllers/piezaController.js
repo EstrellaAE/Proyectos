@@ -28,4 +28,17 @@ const registrarPieza = async (req, res) => {
   }
 };
 
-export{ registrarPieza };
+const obtenerPiezas = async (req, res) => {
+  try {
+    // Buscar todas las piezas en la base de datos
+    const piezas = await Pieza.find();
+    
+
+    res.status(200).json(piezas);
+  } catch (error) {
+    console.error('Error al obtener piezas:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
+export { registrarPieza, obtenerPiezas };

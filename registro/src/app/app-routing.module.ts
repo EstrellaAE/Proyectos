@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'pieza', component: RegistrarPiezaComponent},
   {path: 'asignar-pieza', component: AsignarPiezaComponent},
   {path: 'listar-proyectos', component: ListarSolicitudesComponent},
-  { path: 'filtros', component: FiltrosComponent },
+  {path: 'filtros', component: FiltrosComponent },
 
 ];
 

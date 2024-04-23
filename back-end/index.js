@@ -24,6 +24,7 @@ const corsOptions = {
     }
 };
 app.use(cors(corsOptions));
+
 app.use('/app/proyecto',proyectoRoutes);
 app.use('/app/pieza',piezaRoutes);
 
@@ -33,3 +34,4 @@ app.use('/app/pieza',piezaRoutes);
 const port = 4000;
 
 app.listen(port,()=>{ console.log("Servidor Corriendo", port);})
+

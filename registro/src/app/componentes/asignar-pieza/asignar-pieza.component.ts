@@ -31,7 +31,7 @@ export class AsignarPiezaComponent implements OnInit{
     this.obtenerPiezasDisponibles();
   }
 
-  
+    // y cual es la perrona 
   obtenerProyectos(): void {
     /* this.proyectoService.obtenerProyectos().subscribe((proyectos: Proyecto[]) => {
       this.proyectos = proyectos;

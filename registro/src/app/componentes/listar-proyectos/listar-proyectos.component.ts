@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProyectoService } from '../../servicios/proyecto.service';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { Pieza } from '../../modelos/pieza.model';
@@ -7,25 +7,28 @@ import { PiezaService } from '../../servicios/pieza.service';
 import { Proyecto } from '../../modelos/proyecto.model';
 import { AppRoutingModule } from '../../app-routing.module';
 import { CommonModule } from '@angular/common';
-import { FiltroService } from '../../servicios/filtro.service'; // Importa FiltroService
-import { Route } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-listar-solicitudes',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,RouterModule,FormsModule],
   templateUrl: './listar-proyectos.component.html',
   styleUrl: './listar-proyectos.component.css'
 })
 export  class ListarSolicitudesComponent {
  
   nombreEmpresaForm!: FormGroup;
-  solicitudes:Array<any>; 
+  solicitudes:Array<any>;
+  Piezas:Pieza[] =[];
   isEditar:boolean;
   editarSoli:any;
   formularioEdit!: FormGroup;
-
-  constructor(private formBuilder: FormBuilder, private proyectoService:ProyectoService) {
+  cantidadP:any;
+  
+  constructor(private formBuilder: FormBuilder, private proyectoService:ProyectoService, private piezaService:PiezaService
+  ) {
     this.solicitudes = new Array();
     this.isEditar = false;
    }
@@ -34,9 +37,10 @@ export  class ListarSolicitudesComponent {
     this.nombreEmpresaForm = this.formBuilder.group({
       nombreEmpresa: ['', Validators.required]
     });
-    console.log(this.solicitudes);
     this.inicializarFormulario();
-    this.solicitudes = await this.proyectoService.listarProyectos(); //cargar datos
+    console.log(this.solicitudes);
+    let data =  await this.proyectoService.listarProyectos(); //cargar datos
+    this.solicitudes = data.datos;
   }
   
   
@@ -82,6 +86,7 @@ export  class ListarSolicitudesComponent {
       Perfil: this.editarSoli.Perfil,
       Cantidad: this.editarSoli.Cantidad
     });
+    
   }
   
   // enviar cambios
@@ -94,8 +99,25 @@ export  class ListarSolicitudesComponent {
   }
 
   async borrarSolicitud(id:string){
-    // implementar logica para gardar cambios
-    //const soli = await this.solicitudesServices.borraSolicitud(id);
-  //  console.log(soli);
+    //implementar logica para gardar cambios
+    const soli = await this.proyectoService.eliminarProyecto(id);
+    console.log(soli);
   }
+
+  public  proyecto:any;
+  async asignarPieza(pieza:any){
+    //implementar logica para gardar cambios
+    pieza.cantidad=this.cantidadP;
+    const soli = await this.proyectoService.asignarPieza([pieza],this.proyecto._id);
+    console.log(soli);
+  }
+
+  async obtenerPiezas(id:any){
+    let piezas=await this.piezaService.consultarPiezas();
+    this.Piezas=piezas
+    let proyec = await this.proyectoService.obtenerProyectoPorId(id);
+    this.proyecto = proyec.datos;
+    console.log(proyec);
+  }
+
 }
