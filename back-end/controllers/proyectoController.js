@@ -81,13 +81,17 @@ const eliminarProyecto = async (req, res) => {
 const buscarProyectosPorFiltros = async (req, res) => {
     try {
         // Obtener los filtros de la solicitud
-        const { tienePiezas, fecha } = req.body;
+        const { tienePiezas, fecha } = req.query;
 
         // Construir el objeto de consulta en base a los filtros
         const consulta = {};
 
         if (tienePiezas !== undefined) {
-            consulta['piezas'] = { $exists: tienePiezas };
+            if (tienePiezas === 'true') {
+                consulta['piezas'] = { $exists: true, $not: { $size: 0 } };
+            } else {
+                consulta['piezas'] = { $exists: true, $size: 0 };
+            }
         }
 
         if (fecha) {
@@ -111,66 +115,39 @@ const buscarProyectosPorFiltros = async (req, res) => {
     }
 }
 
-const asignarPieza = async(req,res)=>{
+const asignarPieza = async (req, res) => {
     try {
         const { id } = req.params; // Obtén el ID del proyecto de los parámetros de la URL
         const { piezas } = req.body; // Obtén el array de piezas del cuerpo de la solicitud
     
-    const proyecto = await Proyecto.findById(id);
-    if (!proyecto) {
-      return res.json({ message: 'No se encontró el proyecto' });
-    }
-let idProj = proyecto._id;
-    // Actualiza el proyecto agregando nuevas piezas al campo "piezas" utilizando $addToSet
-    const resultado = await Proyecto.updateOne(
-      { '_id': proyecto._id },
-      { $push: { 'piezas': { $each: piezas } } }
-    );
+        const proyecto = await Proyecto.findById(id);
+        if (!proyecto) {
+            return res.json({ message: 'No se encontró el proyecto' });
+        }
+        
+        // Verificar si las piezas recibidas están en el formato correcto
+        if (!Array.isArray(piezas) || piezas.some(p => typeof p !== 'object')) {
+            return res.status(400).json({ message: 'El formato de las piezas es incorrecto' });
+        }
+        
+        // Actualizar el proyecto agregando nuevas piezas al campo "piezas" utilizando $addToSet
+        const resultado = await Proyecto.updateOne(
+            { '_id': proyecto._id },
+            { $addToSet: { 'piezas': { $each: piezas } } }
+        );
 
-    if (resultado.nModified > 0) {
-      return res.status(200).json({ message: 'Piezas agregadas al proyecto correctamente' });
-    } else {
-      return res.json({ message: 'No se encontró el proyecto o no se realizaron cambios' });
-    }
-  } catch (error) {
-    // Maneja los errores y envía una respuesta de error al cliente
-    console.error('Error al agregar piezas al proyecto:', error);
-    res.status(500).json({ message: 'Error al agregar piezas al proyecto', error: error.message });
-  }
-}
-
-
-///////////
-//Proyectos con Piezas
-const obtenerProyectosConPiezas = async (req, res) => {
-    try {
-        // Buscar proyectos con al menos una pieza asociada
-        const proyectosConPiezas = await Proyecto.find({ cantidadPiezas: { $gt: 0 } }); // Supongamos que 'cantidadPiezas' es el campo que indica la cantidad de piezas asociadas
-
-        return res.json({ proyectosConPiezas });
+        if (resultado.nModified > 0) {
+            return res.status(200).json({ message: 'Piezas agregadas al proyecto correctamente' });
+        } else {
+            return res.json({ message: 'No se encontró el proyecto o no se realizaron cambios' });
+        }
     } catch (error) {
-        console.error('Error al obtener proyectos con piezas:', error);
-        return res.status(500).json({ msg: "Error al obtener proyectos con piezas" });
+        // Maneja los errores y envía una respuesta de error al cliente
+        console.error('Error al agregar piezas al proyecto:', error);
+        res.status(500).json({ message: 'Error al agregar piezas al proyecto', error: error.message });
     }
 }
 
-
-//Proyectos por Fechas
-
-const obtenerProyectosPorFecha = async (req, res) => {
-    try {
-        // Obtener proyectos ordenados por fecha de manera descendente
-        const proyectosPorFecha = await Proyecto.find().sort({ fecha: -1 }); // Supongamos que 'fecha' es el campo que almacena la fecha del proyecto
-
-        return res.json({ proyectosPorFecha });
-    } catch (error) {
-        console.error('Error al obtener proyectos por fecha:', error);
-        return res.status(500).json({ msg: "Error al obtener proyectos por fecha" });
-    }
-}
-
-export { obtenerProyectosPorFecha };
-export { obtenerProyectosConPiezas };
 export {
     crearProyecto,
     listarProyectos,

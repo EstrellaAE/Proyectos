@@ -30,32 +30,15 @@ export class FiltrosComponent implements OnInit {
 
   ngOnInit(): void {
     // Llama a la función para cargar los proyectos con piezas al iniciar el componente
-    this.cargarProyectosConPiezas();
+    //this.cargarProyectosConPiezas();
   }
 
   async buscarProyectos() {
     const filtros = this.formulario.value;
+    const data = await this.proyectoService.filtrar(filtros);
+    console.log(filtros);
     // Llama al servicio para buscar proyectos por filtros y asigna los resultados a las propiedades correspondientes
-    this.proyectosPorFecha = await this.proyectoService.obtenerProyectoPorId(filtros);
+    this.proyectosPorFecha = data.datos;
   }
 
-
-  // Opcional: Agrega métodos similares para cargar piezas disponibles y piezas no asociadas
- async cargarProyectosConPiezas() {
-    try {
-      // Llama al servicio para obtener proyectos que tienen piezas asociadas
-      this.proyectosConPiezas = await this.proyectoService.obtenerProyectosConPiezas();
-    } catch (error) {
-      console.error('Error al cargar proyectos con piezas:', error);
-    }
-  }
-
-  async cargarProyectosPorFecha() {
-    try {
-      // Llama al servicio para obtener proyectos ordenados por fecha
-      this.proyectosPorFecha = await this.proyectoService.obtenerProyectosPorFecha();
-    } catch (error) {
-      console.error('Error al cargar proyectos por fecha:', error);
-    }
-  }
 }
