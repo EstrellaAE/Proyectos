@@ -94,4 +94,15 @@ export class ProyectoService {
       throw error;
     }
   }
+
+  async filtrar(filtros:any){
+    try {
+      console.log(filtros);
+      const {data} = await clienteAxios.get('/proyecto/find',{params:filtros});
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log("Error angular");
+    }
+  }
 }

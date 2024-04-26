@@ -16,7 +16,7 @@ router.get('/list', listarProyectos); // Ruta para listar proyectos
 router.get('/one/:id', obtenerProyectoPorId); // Ruta para obtener un proyecto por su ID
 router.put('/edit/:id', actualizarProyecto); // Ruta para editar un proyecto por su ID
 router.delete('/delete/:id', eliminarProyecto); // Ruta para borrar un proyecto por su ID
-router.delete('/find', buscarProyectosPorFiltros); // Ruta para borrar un proyecto por su ID
+router.get('/find', buscarProyectosPorFiltros); // Ruta 
 router.put('/agregar-pieza/:id',asignarPieza);
 
 // Se exporta el router para poder ser usado en el index (rutas principales)
